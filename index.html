@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alcohol Use Questionnaire - Macclesfield ED</title>
+  <title>Alcohol Use Questionnaire - East Cheshire NHS Trust</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,6 +12,15 @@
       color: #333;
       max-width: 600px;
       margin: auto;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    header img {
+      height: 60px;
     }
     h1, h2 {
       color: #005eb8;
@@ -31,11 +40,19 @@
       border-left: 5px solid #005eb8;
       margin-top: 1rem;
     }
+    a {
+      color: #005eb8;
+    }
   </style>
 </head>
 <body>
-  <h1>Alcohol Questionnaire</h1>
-  <p>Thank you for taking a moment to complete this short alcohol questionnaire based on the <strong>AUDIT-C</strong>. This helps us offer you tailored health advice while you're in our care.</p>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/NHS-Logo.svg" alt="NHS Logo">
+    <h1>East Cheshire NHS Trust</h1>
+  </header>
+
+  <h2>Alcohol Questionnaire</h2>
+  <p>Thank you for taking a moment to complete this short alcohol questionnaire based on the <strong>AUDIT-C</strong>. This helps us offer you tailored health advice while you're in our care at Macclesfield District General Hospital.</p>
 
   <form id="auditForm">
     <label for="q1">1. How often do you have a drink containing alcohol?</label>
@@ -90,9 +107,9 @@
       if (score <= 4) {
         feedback += `<p><strong>Low risk:</strong> Your drinking is within the recommended limits. Keep up the good habits! Learn more at <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>.</p>`;
       } else if (score <= 7) {
-        feedback += `<p><strong>Increasing risk:</strong> You may benefit from reducing your alcohol intake. Consider drink-free days and lower-strength options. <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>Get advice here</a>.</p>`;
+        feedback += `<p><strong>Increasing risk:</strong> You may benefit from reducing your alcohol intake. Consider drink-free days and lower-strength options. See <a href='https://www.changegrowlive.org/' target='_blank'>Change Grow Live</a> for local support or <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>.</p>`;
       } else {
-        feedback += `<p><strong>Higher risk:</strong> You may benefit from speaking with a healthcare professional. Support is available. Visit <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a> or ask our staff for more help.</p>`;
+        feedback += `<p><strong>Higher risk:</strong> We recommend speaking with a healthcare professional. Support is available through <a href='https://www.changegrowlive.org/' target='_blank'>Change Grow Live</a> and <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>. You can also speak to a nurse while you're here.</p>`;
       }
 
       resultDiv.innerHTML = feedback;
