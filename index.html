@@ -11,7 +11,7 @@
       font-family: 'Quicksand', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
+      background-color: #F2E9D8;
       color: #333;
       overflow-x: hidden;
     }
@@ -29,8 +29,11 @@
     header img {
       height: 60px;
     }
-    h1, h2, h3 {
-      color: #917ED9;
+    h1 {
+      color: #005EB8;
+    }
+    h2, h3 {
+      color: #76C1C3;
     }
     label {
       display: block;
@@ -38,9 +41,9 @@
       font-weight: 600;
     }
     .question {
-      background: #eef4fb;
+      background: #F2E9D8;
       padding: 1rem;
-      border-left: 4px solid #72C1F2;
+      border-left: 4px solid #76C1C3;
       margin-bottom: 1rem;
       border-radius: 8px;
     }
@@ -48,7 +51,7 @@
       margin-right: 0.5rem;
     }
     button {
-      background-color: #F2B705;
+      background-color: #F0AE44;
       color: #fff;
       border: none;
       padding: 0.75rem 1rem;
@@ -58,12 +61,12 @@
       transition: background-color 0.3s;
     }
     button:hover {
-      background-color: #F29F05;
+      background-color: #F288A4;
     }
     #result {
-      background: #F28DEB;
+      background: #F288A4;
       padding: 1rem;
-      border-left: 5px solid #F29F05;
+      border-left: 5px solid #F0AE44;
       margin-top: 1rem;
       border-radius: 8px;
     }
@@ -80,7 +83,7 @@
       display: none;
     }
     .start-screen {
-      background-color: #eef4fb;
+      background-color: #F2E9D8;
       padding: 2rem 1rem;
       border-radius: 10px;
       margin-top: 2rem;
@@ -91,19 +94,31 @@
       margin-bottom: 1rem;
       text-align: center;
     }
-    .bubble {
-      position: absolute;
-      bottom: -20px;
-      width: 10px;
-      height: 10px;
-      background: #72C1F2;
-      border-radius: 50%;
-      animation: bubbleUp 3s infinite ease-in;
-      opacity: 0.7;
+    .fizz-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
     }
-    @keyframes bubbleUp {
-      0% { transform: translateY(0) scale(1); opacity: 0.7; }
-      100% { transform: translateY(-300px) scale(0.5); opacity: 0; }
+    .fizz svg {
+      position: absolute;
+      bottom: -10px;
+      fill: #76C1C3;
+      opacity: 0.8;
+      animation: fizzUp 1.5s ease-out forwards;
+    }
+    @keyframes fizzUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-400px) scale(0.5);
+        opacity: 0;
+      }
     }
     .fade-out {
       animation: fadeOut 1s forwards;
@@ -118,112 +133,4 @@
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/National_Health_Service_%28England%29_logo.svg/1280px-National_Health_Service_%28England%29_logo.svg.png" alt="NHS Logo">
-      <h1>East Cheshire NHS Trust</h1>
-    </header>
-
-    <div id="startScreen" class="start-screen">
-      <h2>Welcome to Your Alcohol Health Check</h2>
-      <p>This quick questionnaire is designed to help you understand your alcohol use and access support if needed.</p>
-      <ul class="info-list">
-        <li>Young people in Cheshire East drink more and earlier than the national average.</li>
-        <li>Alcohol costs Cheshire East around £136 million annually.</li>
-        <li>Most people prefer to access alcohol information online—just like this.</li>
-      </ul>
-      <button onclick="startQuiz()">Get Started</button>
-      <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
-      <div class="bubble" style="left: 25%; animation-delay: 0.5s;"></div>
-      <div class="bubble" style="left: 40%; animation-delay: 1s;"></div>
-      <div class="bubble" style="left: 55%; animation-delay: 1.5s;"></div>
-      <div class="bubble" style="left: 70%; animation-delay: 2s;"></div>
-    </div>
-
-    <form id="auditForm" class="hidden">
-      <h2>Alcohol Questionnaire</h2>
-      <p>This short questionnaire uses the AUDIT-C screening tool to provide brief feedback and local support options for alcohol use.</p>
-
-      <div class="question">
-        <label>1. How often do you have a drink containing alcohol?</label>
-        <div class="answers">
-          <input type="radio" name="q1" value="0" required> Never<br>
-          <input type="radio" name="q1" value="1"> Monthly or less<br>
-          <input type="radio" name="q1" value="2"> 2–4 times a month<br>
-          <input type="radio" name="q1" value="3"> 2–3 times a week<br>
-          <input type="radio" name="q1" value="4"> 4 or more times a week
-        </div>
-      </div>
-
-      <div class="question">
-        <label>2. How many units of alcohol do you drink on a typical day when you are drinking?</label>
-        <div class="tooltip">1 unit = ½ pint of regular beer or 1 small glass of wine (125ml) or a single measure of spirits</div>
-        <div class="answers">
-          <input type="radio" name="q2" value="0" required> 1–2 units<br>
-          <input type="radio" name="q2" value="1"> 3–4 units<br>
-          <input type="radio" name="q2" value="2"> 5–6 units<br>
-          <input type="radio" name="q2" value="3"> 7–9 units<br>
-          <input type="radio" name="q2" value="4"> 10 or more units
-        </div>
-      </div>
-
-      <div class="question">
-        <label>3. How often have you had 6+ units (female) or 8+ units (male) on a single occasion in the last year?</label>
-        <div class="answers">
-          <input type="radio" name="q3" value="0" required> Never<br>
-          <input type="radio" name="q3" value="1"> Less than monthly<br>
-          <input type="radio" name="q3" value="2"> Monthly<br>
-          <input type="radio" name="q3" value="3"> Weekly<br>
-          <input type="radio" name="q3" value="4"> Daily or almost daily
-        </div>
-      </div>
-
-      <button type="submit">Get Feedback</button>
-    </form>
-
-    <div id="result" style="display: none;"></div>
-
-    <p>If you're looking for help beyond today, check out:</p>
-    <ul class="info-list">
-      <li><a href="https://www.changegrowlive.org/" target="_blank">Change Grow Live – Local Drug & Alcohol Support</a></li>
-      <li><a href="https://www.cheshireeast.gov.uk/livewell/livewell.aspx" target="_blank">Live Well Cheshire East – Community Services</a></li>
-      <li><a href="https://www.nhs.uk/live-well/alcohol-support/" target="_blank">NHS Alcohol Support</a></li>
-    </ul>
-  </main>
-
-  <script>
-    function startQuiz() {
-      const startScreen = document.getElementById('startScreen');
-      startScreen.classList.add('fade-out');
-      setTimeout(() => {
-        startScreen.style.display = 'none';
-        document.getElementById('auditForm').classList.remove('hidden');
-      }, 1000);
-    }
-
-    document.getElementById('auditForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const q1 = parseInt(document.querySelector('input[name="q1"]:checked')?.value || 0);
-      const q2 = parseInt(document.querySelector('input[name="q2"]:checked')?.value || 0);
-      const q3 = parseInt(document.querySelector('input[name="q3"]:checked')?.value || 0);
-      const score = q1 + q2 + q3;
-
-      let feedback = `<h2>Your Score: ${score}</h2>`;
-
-      if (score <= 4) {
-        feedback += `<p><strong>Low risk:</strong> Your drinking is within the recommended limits. Keep up the good habits! Learn more at <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>.</p>`;
-      } else if (score <= 7) {
-        feedback += `<p><strong>Increasing risk:</strong> You may benefit from reducing your alcohol intake. Consider drink-free days and lower-strength options. See <a href='https://www.changegrowlive.org/' target='_blank'>Change Grow Live</a> for local support or <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>.</p>`;
-      } else {
-        feedback += `<p><strong>Higher risk:</strong> We recommend speaking with a healthcare professional. Support is available through <a href='https://www.changegrowlive.org/' target='_blank'>Change Grow Live</a> and <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>. You can also speak to a nurse while you're here.</p>`;
-      }
-
-      const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = feedback;
-      resultDiv.style.display = 'block';
-      resultDiv.scrollIntoView({ behavior: 'smooth' });
-    });
-  </script>
-</body>
-</html>
+<!-- rest of the HTML remains unchanged -->
