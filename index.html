@@ -111,26 +111,26 @@
       text-align: center;
     }
 
-.fizz-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999;
-}
+    .fizz-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
 
-.fizz circle {
-  fill: #76C1C3;
-  animation: fizzUp 1.5s ease-out forwards;
-  opacity: 0.8;
-}
+    .fizz {
+      fill: #76C1C3;
+      animation: fizzUp 1.5s ease-out forwards;
+      opacity: 0.8;
+    }
 
-@keyframes fizzUp {
-  0% { transform: translateY(0); opacity: 0.8; }
-  100% { transform: translateY(-400px); opacity: 0; }
-}
+    @keyframes fizzUp {
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-400px); opacity: 0; }
+    }
 
     .fade-out {
       animation: fadeOut 1s forwards;
@@ -166,6 +166,7 @@
     <form id="auditForm" class="hidden">
       <h2>Alcohol Questionnaire</h2>
       <p>This short questionnaire uses the AUDIT-C screening tool to provide brief feedback and local support options for alcohol use.</p>
+
       <div class="question">
         <label>1. How often do you have a drink containing alcohol?</label>
         <div class="answers">
@@ -215,42 +216,42 @@
     </ul>
   </main>
 
-<div id="fizzContainer" class="fizz-container hidden"></div>
+  <div id="fizzContainer" class="fizz-container hidden"></div>
 
   <script>
     function startQuiz() {
-  const fizz = document.getElementById('fizzContainer');
-  fizz.classList.remove('hidden');
+      const fizz = document.getElementById('fizzContainer');
+      fizz.classList.remove('hidden');
 
-  for (let i = 0; i < 25; i++) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", "20");
-    svg.setAttribute("height", "20");
-    svg.style.position = "absolute";
-    svg.style.bottom = "0px";
-    svg.style.left = `${Math.random() * 100}%`;
-    svg.style.zIndex = "1000";
+      for (let i = 0; i < 25; i++) {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "20");
+        svg.setAttribute("height", "20");
+        svg.style.position = "absolute";
+        svg.style.bottom = "0px";
+        svg.style.left = `${Math.random() * 100}%`;
+        svg.style.zIndex = "1000";
 
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", "10");
-    circle.setAttribute("cy", "10");
-    circle.setAttribute("r", "10");
-    circle.setAttribute("class", "fizz");
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", "10");
+        circle.setAttribute("cy", "10");
+        circle.setAttribute("r", "10");
+        circle.setAttribute("class", "fizz");
 
-    svg.appendChild(circle);
-    fizz.appendChild(svg);
+        svg.appendChild(circle);
+        fizz.appendChild(svg);
 
-    setTimeout(() => fizz.removeChild(svg), 1600);
-  }
+        setTimeout(() => fizz.removeChild(svg), 1600);
+      }
 
-  const startScreen = document.getElementById('startScreen');
-  startScreen.classList.add('fade-out');
-  setTimeout(() => {
-    startScreen.style.display = 'none';
-    document.getElementById('auditForm').classList.remove('hidden');
-    fizz.classList.add('hidden');
-  }, 1000);
-}
+      const startScreen = document.getElementById('startScreen');
+      startScreen.classList.add('fade-out');
+      setTimeout(() => {
+        startScreen.style.display = 'none';
+        document.getElementById('auditForm').classList.remove('hidden');
+        fizz.classList.add('hidden');
+      }, 1000);
+    }
 
     document.getElementById('auditForm').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -265,7 +266,7 @@
       if (score <= 4) {
         feedback += `<p><strong>Low risk:</strong> Your drinking is within the recommended limits. Keep up the good habits! Learn more at <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>.</p>`;
       } else if (score <= 7) {
-        feedback += `<p><strong>Increasing risk:</strong> You may benefit from reducing your alcohol intake. Consider drink-free days and lower-strength options. Try the <a href='https://apps.apple.com/gb/app/drink-free-days/id1437773657' target='_blank'>iOS app</a> or <a href='https://play.google.com/store/apps/details?id=uk.nhs.drinkfreedays' target='_blank'>Android app</a>.</p>`;
+        feedback += `<p><strong>Increasing risk:</strong> You may benefit from reducing your alcohol intake. Try the <a href='https://apps.apple.com/gb/app/drink-free-days/id1437773657' target='_blank'>iOS app</a> or <a href='https://play.google.com/store/apps/details?id=uk.nhs.drinkfreedays' target='_blank'>Android app</a>.</p>`;
       } else {
         feedback += `<p><strong>Higher risk:</strong> We recommend speaking with a healthcare professional. Support is available through <a href='https://www.changegrowlive.org/' target='_blank'>Change Grow Live</a> and <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>. You can also speak to a nurse while you're here.</p>`;
       }
