@@ -79,9 +79,9 @@
     }
 
     #result {
-      background: #ffe2e9;
+      background: #e5f3fb;
       padding: 1rem;
-      border-left: 5px solid #e91e63;
+      border-left: 5px solid #76C1C3;
       margin-top: 1.5rem;
       border-radius: 10px;
     }
@@ -94,10 +94,32 @@
       border-radius: 10px;
     }
 
-    ul.info-list {
-      padding-left: 1.2rem;
-      line-height: 1.6;
-      color: #444;
+    .resource-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      background: #fff;
+      padding: 0.75rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .resource-card img {
+      height: 40px;
+      width: auto;
+    }
+
+    .resource-card a {
+      font-weight: bold;
+      color: #005EB8;
+      text-decoration: none;
+    }
+
+    .resource-card p {
+      margin: 0.2rem 0 0;
+      font-size: 0.9rem;
+      color: #333;
     }
 
     .hidden {
@@ -146,7 +168,6 @@
       </div>
       <button onclick="nextQuestion('q1','q2')">Next</button>
     </div>
-
     <div id="question2" class="hidden">
       <h2>2. How many units of alcohol do you drink on a typical day when drinking?</h2>
       <div class="question">
@@ -230,38 +251,69 @@
             <li>Aim for a few drink-free days each week</li>
             <li>Try smaller measures or alcohol-free alternatives</li>
             <li>Notice if drinking is linked to stress or routine</li>
-          </ul>
-          <div id='resources'>
-            <p><strong>Helpful resources:</strong></p>
-            <ul class='info-list'>
-              <li><a href='https://www.changegrowlive.org/young-people/cheshire-east' target='_blank'>Change Grow Live – Cheshire East</a></li>
-              <li><a href='https://www.cheshireeast.gov.uk/livewell/livewell.aspx' target='_blank'>Live Well Cheshire East</a></li>
-              <li><a href='https://apps.apple.com/gb/app/drink-free-days/id1437773657' target='_blank'>Drink Free Days App – iOS</a></li>
-              <li><a href='https://play.google.com/store/apps/details?id=uk.nhs.drinkfreedays' target='_blank'>Drink Free Days App – Android</a></li>
-            </ul>
-          </div>`;
+          </ul>` + getResourceCards();
       } else {
         message = `
           <h3>🔴 Support really helps—and it's here for you</h3>
           <p>Your results suggest alcohol may be having a bigger effect on your wellbeing. You're not alone—and the right support can make all the difference.</p>
           <ul class='info-list'>
-            <li>You can talk to a nurse or doctor here today</li>
+            <li><strong>You can speak to a healthcare professional about your drinking today</strong></li>
+            <li>You can also speak to your GP for support and advice</li>
             <li>Change Grow Live offers confidential support</li>
             <li>Even small steps can help you feel better</li>
-          </ul>
-          <div id='resources'>
-            <p><strong>Support services:</strong></p>
-            <ul class='info-list'>
-              <li><a href='https://www.changegrowlive.org/young-people/cheshire-east' target='_blank'>Change Grow Live – Cheshire East</a></li>
-              <li><a href='https://www.cheshireeast.gov.uk/livewell/livewell.aspx' target='_blank'>Live Well Cheshire East</a></li>
-              <li><a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Advice</a></li>
-            </ul>
-          </div>`;
+          </ul>` + getResourceCards();
       }
 
       resultDiv.innerHTML = message;
       resultDiv.classList.remove('hidden');
       resultDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function getResourceCards() {
+      return `
+      <div id='resources'>
+        <p><strong>Helpful resources:</strong></p>
+
+        <div class='resource-card'>
+          <img src='https://www.changegrowlive.org/themes/custom/cgl_theme/logo.svg' alt='Change Grow Live Logo'>
+          <div>
+            <a href='https://www.changegrowlive.org/young-people/cheshire-east' target='_blank'>Change Grow Live – Cheshire East</a>
+            <p>Confidential support for anyone concerned about alcohol use, including counselling and peer groups.</p>
+          </div>
+        </div>
+
+        <div class='resource-card'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/e/e0/Cheshire_East_Council_logo.png' alt='Live Well Cheshire East Logo'>
+          <div>
+            <a href='https://www.cheshireeast.gov.uk/livewell/livewell.aspx' target='_blank'>Live Well Cheshire East</a>
+            <p>Directory of services, wellbeing activities, and local support groups across Cheshire East.</p>
+          </div>
+        </div>
+
+        <div class='resource-card'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/3/31/NHS.svg' alt='NHS Logo'>
+          <div>
+            <a href='https://www.nhs.uk/live-well/alcohol-support/' target='_blank'>NHS Alcohol Support</a>
+            <p>Advice from the NHS about drinking guidelines, health effects, and how to cut down.</p>
+          </div>
+        </div>
+
+        <div class='resource-card'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_logo_black.svg' alt='App Store Logo'>
+          <div>
+            <a href='https://apps.apple.com/gb/app/drink-free-days/id1437773657' target='_blank'>Drink Free Days – iOS App</a>
+            <p>Free app from the NHS to help you track and reduce your alcohol intake.</p>
+          </div>
+        </div>
+
+        <div class='resource-card'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_2022_icon.svg' alt='Google Play Logo'>
+          <div>
+            <a href='https://play.google.com/store/apps/details?id=uk.nhs.drinkfreedays' target='_blank'>Drink Free Days – Android App</a>
+            <p>Track alcohol-free days and set goals using this free NHS-backed app.</p>
+          </div>
+        </div>
+      </div>`;
     }
   </script>
 </body>
