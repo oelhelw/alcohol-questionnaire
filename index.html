@@ -240,11 +240,21 @@
       let message = '';
 
       if (score <= 4) {
-        message = `
-          <h3>✅ You're doing well</h3>
-          <p>Your current drinking levels are considered low risk. Staying mindful of your habits helps protect your health long-term.</p>
-          <p>Explore ways to keep feeling well, connected and active in your local area.</p>
-          <p><a href='https://www.cheshireeast.gov.uk/livewell/livewell.aspx' target='_blank'>Visit Live Well Cheshire East</a></p>`;
+  message = `
+    <h3>✅ You're doing well</h3>
+    <p>Your current drinking levels are considered low risk. Staying mindful of your habits helps protect your health long-term.</p>
+    <p>Explore ways to keep feeling well, connected and active in your local area.</p>
+
+    <div id='resources'>
+      <p><strong>Helpful resource:</strong></p>
+      <div class='resource-card'>
+        <img src='https://www.cheshireeast.gov.uk/images/non_user/livewell/cec-livewell-logo2-300x100px.png' alt='Live Well Cheshire East Logo'>
+        <div>
+          <a href='https://www.cheshireeast.gov.uk/livewell/livewell.aspx' target='_blank'>Live Well Cheshire East</a>
+          <p>Directory of services, wellbeing activities, and local support groups across Cheshire East.</p>
+        </div>
+      </div>
+    </div>`;
       } else if (score <= 7) {
         message = `
           <h3>🟡 Small changes make a difference</h3>
