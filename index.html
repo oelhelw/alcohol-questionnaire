@@ -156,6 +156,19 @@
     <div id="startScreen">
       <h2>Welcome to Your Alcohol Health Check</h2>
       <p>This short, private tool helps you think about your drinking and offers local support if needed.</p>
+      <div class="question" style="background:#f1f9f9; border-left: 5px solid #318ea3;">
+  <button onclick="toggleFacts()" style="background:none; border:none; font-weight:bold; font-size:1rem; color:#318ea3; cursor:pointer; padding:0; margin-bottom:0.5rem;">
+    ▸ Alcohol in East Cheshire: Did you know?
+  </button>
+  <div id="cheshireFacts" style="display:none; margin-top:0.5rem;">
+    <ul class="info-list">
+      <li>Alcohol is linked to around <strong>1 in 10 hospital admissions</strong> in the region.</li>
+      <li>Many people in East Cheshire drink above the recommended weekly limit without realising it.</li>
+      <li><strong>Small changes</strong> – like drink-free days – have a big impact on health.</li>
+      <li>Local services are available if you’d ever like to talk or get support — no judgement.</li>
+    </ul>
+  </div>
+</div>
       <button onclick="startQuiz()">Get Started</button>
     </div>
 
@@ -198,6 +211,17 @@
   </main>
 
   <script>
+function toggleFacts() {
+  const facts = document.getElementById("cheshireFacts");
+  const btn = event.currentTarget;
+  const isVisible = facts.style.display === "block";
+
+  facts.style.display = isVisible ? "none" : "block";
+  btn.innerHTML = isVisible
+    ? "▸ Alcohol in East Cheshire: Did you know?"
+    : "▾ Alcohol in East Cheshire: Did you know?";
+}
+    
     let answers = { q1: null, q2: null, q3: null };
 
     function startQuiz() {
