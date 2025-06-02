@@ -213,8 +213,9 @@
       answers[current] = parseInt(selected.value);
       document.getElementById(`question${current.charAt(1)}`).style.display = 'none';
 
-      if (current === 'q1' && selected.value === '0') {
-        showResources(0);
+     if (current === 'q1' && selected.value === '0') {
+  updateProgressBar(100);
+  showResources(0);
       } else {
         document.getElementById(`question${next.charAt(1)}`).classList.remove('hidden');
         updateProgressBar(next === 'q3' ? 75 : 50);
